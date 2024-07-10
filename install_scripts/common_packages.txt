@@ -6,48 +6,63 @@
     xinput
     build-essential
     git
-    policykit-1-gnome 
-    network-manager 
-    network-manager-gnome
+    networkmanager 
+    network-manager-applet
     pamixer
-    thunar
-    thunar-archive-plugin
-    thunar-volman
-    file-roller
+    dolphin
+    ranger
     lxappearance
     dialog
     mtools 
     dosfstools 
-    avahi-daemon 
     acpi
     acpid 
-    gvfs-backends 
-    xfce4-power-manager
-    pulseaudio
+    pipewire-pulse
     pavucontrol
-    pamixer
     pulsemixer
+    nitrogen
     feh
-    fonts-recommended 
-    fonts-font-awesome
-    fonts-terminus 
+    ttf-ubuntu-font-family
+    ttf-font-awesome
+    ttf-sourcecodepro-nerd
+    ttf-mononoki-nerd
+    ttf-mononoki
+    starship
+    terminus-font 
     papirus-icon-theme
     exa
     scrot
     rofi
     dunst
-    libnotify-bin
+    libnotify
     xdotool
-    unzip
-    libnotify-dev
-    micro
-    geany
-    geany-plugin-addons 
-    geany-plugin-git-changebar 
-    geany-plugin-spellcheck 
-    geany-plugin-treebrowser
-    geany-plugin-markdown
-    geany-plugin-insertnum
-    geany-plugin-lineoperations
-    geany-plugin-automark
-    redshift
+    htop
+    xclip
+    lxsession
+    volumeicon
+    caprine
+    rofi-emoji
+    rofi-calc
+    libqalculate
+    pacman-contrib
+    vim
+    alacritty
+    clipmenu
+    gparted
+    ocular
+    vlc 
+    neofetch
+    libreoffice-fresh
+    qbittorrent
+    thunderbird   
+    tmux
+    cronie
+    openssh
+    xterm
+    dmenu
+    python3
+    tigervnc
+    neovim
+    nodejs
+    npm
+

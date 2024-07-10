@@ -5,8 +5,8 @@ read response
 
 if [[ "$response" =~ ^[Yy]$ ]]; then
     echo "Installing Bluetooth services..."
-		sudo apt install -y bluez blueman
-		sudo systemctl enable cups
+		sudo pacman -Sy bluez blueman
+		sudo systemctl enable --now bluetooth
 # sudo systemctl enable bluetooth
     echo "Bluetooth services installed."
 elif [[ "$response" =~ ^[Nn]$ ]]; then
