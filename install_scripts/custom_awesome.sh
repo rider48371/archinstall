@@ -3,10 +3,8 @@
 # Main list of packages
 packages=(
 	"awesome"
-	"awesome-extra"
-	"awesome-doc"
-    "tilix"
-    "firefox-esr"
+    "alacritty"
+    "sxhkd"
 )
 
 # Function to read common packages from a file
@@ -21,7 +19,7 @@ read_common_packages() {
 }
 
 # Read common packages from file
-read_common_packages $HOME/bookworm-scripts/install_scripts/common_packages.txt
+read_common_packages $HOME/archinstall/install_scripts/common_packages.txt
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -38,8 +36,7 @@ install_packages() {
     # Install missing packages
     if [ ${#missing_pkgs[@]} -gt 0 ]; then
         echo "Installing missing packages: ${missing_pkgs[@]}"
-        sudo apt update
-        sudo apt install -y "${missing_pkgs[@]}"
+        sudo pacman -Sy "${missing_pkgs[@]}"
         if [ $? -ne 0 ]; then
             echo "Failed to install some packages. Exiting."
             exit 1
@@ -52,22 +49,21 @@ install_packages() {
 # Call function to install packages
 install_packages "${packages[@]}"
 
-sudo systemctl enable avahi-daemon
 sudo systemctl enable acpid
 
 xdg-user-dirs-update
 mkdir ~/Screenshots/
 
-SCRIPT_DIR=~/bookworm-scripts
-REPO_URL=https://github.com/drewgrif/jag_dots.git
+SCRIPT_DIR=~/archinstall
+REPO_URL=https://github.com/rider48371/wmdots.git
 
 # Check if the directory already exists
-if [ -d "$SCRIPT_DIR/jag_dots" ]; then
-    echo "Directory $SCRIPT_DIR/jag_dots already exists."
+if [ -d "$SCRIPT_DIR/wmdots" ]; then
+    echo "Directory $SCRIPT_DIR/wmdots already exists."
 else
     # Clone the repository
-    echo "Cloning jag_dots repository..."
-    git clone $REPO_URL $SCRIPT_DIR/jag_dots
+    echo "Cloning wmdots repository..."
+    git clone $REPO_URL $SCRIPT_DIR/wmdots
     if [ $? -eq 0 ]; then
         echo "Repository cloned successfully."
     else
@@ -76,21 +72,17 @@ else
     fi
 fi
 
-\cp -r ~/bookworm-scripts/jag_dots/scripts/ ~
-\cp -r ~/bookworm-scripts/jag_dots/.config/awesome/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/dunst/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/picom/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/rofi/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/kitty/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/backgrounds/ ~/.config/
+\cp -r ~/archinstall/wmdots/scripts/ ~
+\cp -r ~/archinstall/wmdots/.config/awesome/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/dunst/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/rofi/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/backgrounds/ ~/.config/
 
-# FT-Labs picom and nerdfonts are installed
-bash ~/bookworm-scripts/install_scripts/picom.sh
-bash ~/bookworm-scripts/install_scripts/nerdfonts.sh
 
 # adding gtk theme and icon theme
 bash ~/bookworm-scripts/colorschemes/blue.sh
 
 # add settings.ini to config
-\cp -r ~/bookworm-scripts/jag_dots/.config/gtk-3.0/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/gtk-3.0/ ~/.config/
 

@@ -20,13 +20,10 @@ check_and_rename_suckless_dir
 
 # Main list of packages
 packages=(
-    "xorg-dev"
     "sxhkd"
-    "firefox-esr"
-    "tilix"
-    "kitty"
     "flameshot"
     "ranger"
+    "alacritty"
 )
 
 # Function to read common packages from a file
@@ -41,7 +38,7 @@ read_common_packages() {
 }
 
 # Read common packages from file
-read_common_packages "$HOME/bookworm-scripts/install_scripts/common_packages.txt"
+read_common_packages "$HOME/archinstall/install_scripts/common_packages.txt"
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -58,8 +55,7 @@ install_packages() {
     # Install missing packages
     if [ ${#missing_pkgs[@]} -gt 0 ]; then
         echo "Installing missing packages: ${missing_pkgs[@]}"
-        sudo apt update
-        sudo apt install -y "${missing_pkgs[@]}"
+        sudo pacman -Sy "${missing_pkgs[@]}"
         if [ $? -ne 0 ]; then
             echo "Failed to install some packages. Exiting."
             exit 1
@@ -73,7 +69,6 @@ install_packages() {
 install_packages "${packages[@]}"
 
 # Enable services
-sudo systemctl enable avahi-daemon
 sudo systemctl enable acpid
 
 # Update user directories
@@ -93,15 +88,15 @@ EOF
 sudo cp ./temp /usr/share/xsessions/dwm.desktop
 rm ./temp
 
-# Clone or check existing jag_dots repository
-SCRIPT_DIR=~/bookworm-scripts
-REPO_URL=https://github.com/drewgrif/jag_dots.git
+# Clone or check existing wmdots repository
+SCRIPT_DIR=~/archinstall
+REPO_URL=https://github.com/rider48371/wmdots.git
 
-if [ -d "$SCRIPT_DIR/jag_dots" ]; then
-    echo "Directory $SCRIPT_DIR/jag_dots already exists."
+if [ -d "$SCRIPT_DIR/wmdots" ]; then
+    echo "Directory $SCRIPT_DIR/wmdots already exists."
 else
-    echo "Cloning jag_dots repository..."
-    git clone "$REPO_URL" "$SCRIPT_DIR/jag_dots"
+    echo "Cloning wmdots repository..."
+    git clone "$REPO_URL" "$SCRIPT_DIR/wmdots"
     if [ $? -eq 0 ]; then
         echo "Repository cloned successfully."
     else
@@ -111,20 +106,19 @@ else
 fi
 
 # Copy configuration files
-\cp -r ~/bookworm-scripts/jag_dots/scripts/ ~
-\cp -r ~/bookworm-scripts/jag_dots/.config/dunst/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/kitty/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/rofi/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/picom/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/backgrounds/ ~/.config/
+\cp -r ~/archinstall/wmdots/scripts/ ~
+\cp -r ~/archinstall/wmdots/.config/dunst/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/rofi/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/backgrounds/ ~/.config/
 
 # Move autostart script
 mkdir -p ~/.local/share/dwm
-\cp -r ~/bookworm-scripts/jag_dots/.local/share/dwm/autostart.sh ~/.local/share/dwm/
+\cp -r ~/archinstall/wmdots/.local/share/dwm/autostart.sh ~/.local/share/dwm/
 chmod +x ~/.local/share/dwm/autostart.sh
 
 # Move patched dwm, slstatus, and st
-\cp -r ~/bookworm-scripts/jag_dots/.config/suckless/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/suckless/ ~/.config/
 
 # Install custom dwm
 cd ~/.config/suckless/dwm
@@ -142,6 +136,4 @@ make
 sudo make clean install
 
 # Install additional scripts and themes
-bash ~/bookworm-scripts/install_scripts/picom.sh
-bash ~/bookworm-scripts/install_scripts/nerdfonts.sh
-bash ~/bookworm-scripts/colorschemes/blue.sh
+bash ~/archinstall/colorschemes/blue.sh
