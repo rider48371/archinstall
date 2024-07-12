@@ -40,8 +40,7 @@ check_slim() {
 # Function to install and enable LightDM
 install_lightdm() {
     echo "Installing LightDM (recommended)..."
-    sudo apt update
-    sudo apt install -y lightdm
+    sudo pacman -Sy lightdm
     sudo systemctl enable lightdm
     echo "LightDM has been installed and enabled."
 }
@@ -49,8 +48,7 @@ install_lightdm() {
 # Function to install and enable GDM3
 install_gdm() {
     echo "Installing minimal GDM3..."
-    sudo apt update
-    sudo apt install -y --no-install-recommends gdm3
+    sudo pacman -Sy gdm3
     sudo systemctl enable gdm3
     echo "GDM3 has been installed and enabled."
 }
@@ -58,8 +56,7 @@ install_gdm() {
 # Function to install and enable SDDM
 install_sddm() {
     echo "Installing minimal SDDM..."
-    sudo apt update
-    sudo apt install -y --no-install-recommends sddm
+    sudo pacman -Sy sddm
     sudo systemctl enable sddm
     echo "SDDM has been installed and enabled."
 }
@@ -67,8 +64,7 @@ install_sddm() {
 # Function to install and enable LXDM
 install_lxdm() {
     echo "Installing LXDM..."
-    sudo apt update
-    sudo apt install -y --no-install-recommends lxdm
+    sudo pacman -Sy lxdm
     sudo systemctl enable lxdm
     echo "LXDM has been installed and enabled."
 }
@@ -76,8 +72,7 @@ install_lxdm() {
 # Function to install and enable LXDM
 install_slim() {
     echo "Installing SLiM..."
-    sudo apt update
-    sudo apt install -y slim
+    sudo pacman -Sy slim
     sudo systemctl enable slim
     echo "SLiM has been installed and enabled."
 }

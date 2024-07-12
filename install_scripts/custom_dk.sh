@@ -2,7 +2,13 @@
 
 # Main list of packages
 packages=(
-    "libxcb"
+    "xcb-proto"
+    "xcb-util"
+    "xcb-util-cursor"
+    "xcb-util-keysyms"
+    "xcb-util-wm"
+    "git"
+    "dmenu"
     "sxhkd"
     "polybar"
     "alacritty"

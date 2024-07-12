@@ -46,6 +46,7 @@
     libqalculate
     pacman-contrib
     vim
+    dpkg
     alacritty
     clipmenu
     gparted

@@ -24,6 +24,7 @@ packages=(
     "flameshot"
     "ranger"
     "alacritty"
+    "dwm"
 )
 
 # Function to read common packages from a file

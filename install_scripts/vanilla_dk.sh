@@ -2,17 +2,15 @@
 
 # Main list of packages
 packages=(
-    "libxcb-randr0-dev"
-    "libxcb-util-dev"
-    "libxcb-icccm4-dev"
-    "libxcb-cursor-dev"
-    "libxcb-keysyms1-dev"
-    "libxcb-res0-dev"
+    "xcb-proto"
+    "xcb-util"
+    "xcb-util-cursor"
+    "xcb-util-keysyms"
+    "xcb-util-wm"
+    "git"
+    "dmenu"
     "sxhkd"
-    "suckless-tools"
     "polybar"
-    "stterm"
-    "firefox-esr"
 )
 
 # Function to read common packages from a file
@@ -27,7 +25,7 @@ read_base_packages() {
 }
 
 # Read common packages from file
-read_base_packages "$HOME/bookworm-scripts/install_scripts/base_packages.txt"
+read_base_packages "$HOME/archinstall/install_scripts/base_packages.txt"
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -44,8 +42,7 @@ install_packages() {
     # Install missing packages
     if [ ${#missing_pkgs[@]} -gt 0 ]; then
         echo "Installing missing packages: ${missing_pkgs[@]}"
-        sudo apt update
-        sudo apt install -y "${missing_pkgs[@]}"
+        sudo pacman -Sy "${missing_pkgs[@]}"
         if [ $? -ne 0 ]; then
             echo "Failed to install some packages. Exiting."
             exit 1

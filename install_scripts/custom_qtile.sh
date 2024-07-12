@@ -2,19 +2,20 @@
 
 # Main list of packages
 packages=(
-	"python3"
-    "python3-pip"
-    "python3-venv"
-    "python3-v-sim"
-    "python-dbus-dev"
-    "libpangocairo-1.0-0"
-    "python3-cairocffi"
-    "python3-xcffib"
-    "libxkbcommon-dev"
-    "libxkbcommon-x11-dev"
+	"gdk-pixbuf2"
+    "glibc"
+    "libnotify"
+    "librsvg"
+    "pango"
+    "python"
+    "python-cairocffi"
+    "python-gobject"
+    "python-xcffib"
+    "wlroots"
     "alsa-utils"
-    "tilix"
-    "firefox-esr"
+    "alacritty"
+    "sxhkd"
+    "qtile"
 )
 
 # Function to read common packages from a file
@@ -29,7 +30,7 @@ read_common_packages() {
 }
 
 # Read common packages from file
-read_common_packages $HOME/bookworm-scripts/install_scripts/common_packages.txt
+read_common_packages $HOME/archinstall/install_scripts/common_packages.txt
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -46,8 +47,7 @@ install_packages() {
     # Install missing packages
     if [ ${#missing_pkgs[@]} -gt 0 ]; then
         echo "Installing missing packages: ${missing_pkgs[@]}"
-        sudo apt update
-        sudo apt install -y "${missing_pkgs[@]}"
+        sudo pacman -Sy "${missing_pkgs[@]}"
         if [ $? -ne 0 ]; then
             echo "Failed to install some packages. Exiting."
             exit 1
@@ -62,53 +62,16 @@ install_packages "${packages[@]}"
 
 xdg-user-dirs-update
 
-# set location of virtual directory
-qtilevenv="$HOME/.local/src/qtile_venv"
-
-# Setting up virtual environment for qtile.
-python3 -m venv $qtilevenv 
-mkdir ~/.local/bin/
-
-# Git clone into virtual environment
-git clone https://github.com/qtile/qtile.git $qtilevenv/qtile
-
-# Install Qtile
-$qtilevenv/bin/pip install $qtilevenv/qtile/.
-
-# Install psutil
-$qtilevenv/bin/pip install psutil
-
-# Adding venv to correct path ~/.local/bin/qtile
-
-ln -sf $qtilevenv/bin/qtile ~/.local/bin/
-
-# Adding qtile.desktop to Lightdm xsessions directory
-cat > ./temp << "EOF"
-[Desktop Entry]
-Name=Qtile
-Comment=Qtile Session
-Type=Application
-Keywords=wm;tiling
-EOF
-sudo cp ./temp /usr/share/xsessions/qtile.desktop;rm ./temp
-u=$USER
-sudo echo "Exec=/home/$u/.local/bin/qtile start" | sudo tee -a /usr/share/xsessions/qtile.desktop
-
 # moving custom config
-\cp -r ~/bookworm-scripts/jag_dots/scripts/ ~
-\cp -r ~/bookworm-scripts/jag_dots/.config/qtile/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/dunst/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/rofi/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/picom/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/kitty/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/backgrounds/ ~/.config/
+\cp -r ~/archinstall/wmdots/scripts/ ~
+\cp -r ~/archinstall/wmdots/.config/qtile/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/dunst/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/rofi/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/backgrounds/ ~/.config/
 
 chmod +x ~/.config/qtile/autostart.sh
 
-# check FT-Labs picom and nerdfonts are installed
-bash ~/bookworm-scripts/install_scripts/picom.sh
-bash ~/bookworm-scripts/install_scripts/nerdfonts.sh
-
 # adding gtk theme and icon theme
-bash ~/bookworm-scripts/colorschemes/blue.sh
+bash ~/archinstall/colorschemes/blue.sh
 

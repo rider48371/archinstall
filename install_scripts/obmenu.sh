@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sudo apt install -y libgtk3-perl
-sudo apt install -y libmodule-build-perl
+sudo pacman -Sy perl-gtk3
+sudo pacman -Sy perl-module-build
 
 ## install LinuxDesktopFile
 cd ~/Downloads

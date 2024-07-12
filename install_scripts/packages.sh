@@ -2,7 +2,7 @@
 
 # Function to install selected packages
 install_packages() {
-    sudo apt install -y "$@"
+    sudo pacman -Sy "$@"
 }
 
 # File Managers

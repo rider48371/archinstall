@@ -3,10 +3,7 @@
 # Main list of packages
 packages=(
 	"awesome"
-	"awesome-extra"
-	"awesome-doc"
-    "tilix"
-    "firefox-esr"
+    "sxhkd"
 )
 
 # Function to read base packages from a file
@@ -21,7 +18,7 @@ read_base_packages() {
 }
 
 # Read base packages from file
-read_base_packages "$HOME/bookworm-scripts/install_scripts/base_packages.txt"
+read_base_packages "$HOME/archinstall/install_scripts/base_packages.txt"
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -38,8 +35,7 @@ install_packages() {
     # Install missing packages
     if [ ${#missing_pkgs[@]} -gt 0 ]; then
         echo "Installing missing packages: ${missing_pkgs[@]}"
-        sudo apt update
-        sudo apt install -y "${missing_pkgs[@]}"
+        sudo pacman -Sy "${missing_pkgs[@]}"
         if [ $? -ne 0 ]; then
             echo "Failed to install some packages. Exiting."
             exit 1
