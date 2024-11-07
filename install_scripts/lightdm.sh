@@ -41,7 +41,7 @@ check_slim() {
 install_lightdm() {
     echo "Installing LightDM (recommended)..."
     sudo pacman -Sy lightdm
-    sudo systemctl enable lightdm
+    sudo systemctl enable --now lightdm
     echo "LightDM has been installed and enabled."
 }
 
@@ -49,7 +49,7 @@ install_lightdm() {
 install_gdm() {
     echo "Installing minimal GDM3..."
     sudo pacman -Sy gdm3
-    sudo systemctl enable gdm3
+    sudo systemctl enable --now gdm3
     echo "GDM3 has been installed and enabled."
 }
 
@@ -57,7 +57,7 @@ install_gdm() {
 install_sddm() {
     echo "Installing minimal SDDM..."
     sudo pacman -Sy sddm
-    sudo systemctl enable sddm
+    sudo systemctl enable --now sddm
     echo "SDDM has been installed and enabled."
 }
 
@@ -65,7 +65,7 @@ install_sddm() {
 install_lxdm() {
     echo "Installing LXDM..."
     sudo pacman -Sy lxdm
-    sudo systemctl enable lxdm
+    sudo systemctl enable --now lxdm
     echo "LXDM has been installed and enabled."
 }
 
@@ -73,7 +73,7 @@ install_lxdm() {
 install_slim() {
     echo "Installing SLiM..."
     sudo pacman -Sy slim
-    sudo systemctl enable slim
+    sudo systemctl enable --now slim
     echo "SLiM has been installed and enabled."
 }
 

@@ -112,6 +112,10 @@ fi
 \cp -r ~/archinstall/wmdots/.config/rofi/ ~/.config/
 \cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
 \cp -r ~/archinstall/wmdots/.config/backgrounds/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/alacritty/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/kitty/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
+\cp -r ~/archinstall/wmdots/.scripts/ ~/.local/bin/
 
 # Move autostart script
 mkdir -p ~/.local/share/dwm

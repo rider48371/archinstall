@@ -80,6 +80,10 @@ fi
 \cp -r ~/archinstall/wmdots/.config/dunst/ ~/.config/
 \cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
 \cp -r ~/archinstall/wmdots/.config/backgrounds/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/alacritty/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/kitty/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
+\cp -r ~/archinstall/wmdots/.scripts/ ~/.local/bin/
 
 
 # adding gtk theme and icon theme

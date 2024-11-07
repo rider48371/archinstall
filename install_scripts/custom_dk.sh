@@ -95,6 +95,10 @@ fi
 \cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
 \cp -r ~/archinstall/wmdots/.config/rofi/ ~/.config/
 \cp -r ~/archinstall/wmdots/.config/dunst/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/alacritty/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/kitty/ ~/.config/
+\cp -r ~/archinstall/wmdots/.config/picom/ ~/.config/
+\cp -r ~/archinstall/wmdots/.scripts/ ~/.local/bin/
 
 chmod +x ~/.config/dk/dkrc
 chmod +x ~/.config/dk/polybar-dk
